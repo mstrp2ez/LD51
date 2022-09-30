@@ -4,5 +4,49 @@
 	},
 	"gui":"assets/gui/gui0.json",
 	"items":[
+		{
+			"type":"SpriteAnimation",
+			"id":"Hero",
+			"x":300,
+			"y":200,
+			"animsrc":"assets/animations/hero.json",
+			"randomAnimation":"true"
+		},
+		{
+			"type":"Sprite",
+			"id":"conveyorExitRight",
+			"x":200,
+			"y":275,
+			"layer":3,
+			"src":"assets/animations/conveyorExitRight.png"
+		},
+		{
+			"type":"Sprite",
+			"id":"conveyorExitLeft",
+			"x":400,
+			"y":275,
+			"layer":3,
+			"src":"assets/animations/conveyorExitLeft.png"
+		},
+		{
+			"type":"SpriteAnimation",
+			"id":"conveyorbelt",
+			"x":240,
+			"y":310,
+			"layer":0,
+			"animsrc":"assets/animations/conveyorbelt.json"
+		},
+		{
+			"type":"Crate",
+			"id":"crate",
+			"x":240,
+			"y":285,
+			"endpoint":{
+				"x":410,
+				"y":0
+			},
+			"layer":1,
+			"src":"assets/animations/crate.png"
+		}
 	]
 }

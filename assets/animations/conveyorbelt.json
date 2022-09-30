@@ -1,0 +1,23 @@
+{
+	"spritesrc":"assets/animations/conveyorBelt.png",
+	"animations":[
+		{
+			"name":"idle",
+			"frames":[{
+					"duration":100,
+					"x":0,
+					"y":0,
+					"w":182,
+					"h":14
+				},
+				{
+					"duration":100,
+					"x":0,
+					"y":14,
+					"w":182,
+					"h":14
+				}
+			]
+		}
+	]
+}

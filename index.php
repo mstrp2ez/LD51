@@ -31,24 +31,18 @@
 <script src="js/pattern.js"></script>
 
 <script src="js/utils.js"></script>
+
 <script src="js/canvas.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/scenemanager.js"></script>
 <script src="js/animation.js"></script>
 <script src="js/rendersnapshot.js"></script>
 <script src="js/tilemap.js"></script>
-<script src="js/waves.js"></script>
 <script src="js/pathfinding.js"></script>
-<script src="js/buildmanager.js"></script>
 <script src="js/sprite.js"></script>
-<script src="js/hostiles.js"></script>
-<script src="js/projectile.js"></script>
-<script src="js/tower.js"></script>
-<script src="js/city.js"></script>
+<script src="js/crate.js"></script>
 <script src="js/fow.js"></script>
-
 <script src="js/effects.js"></script>
-
 <script src="js/gui.js"></script>
 <script src="js/scene.js"></script>
 
