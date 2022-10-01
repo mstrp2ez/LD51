@@ -63,7 +63,7 @@
 			this.animsrc=params.animsrc;
 			this.randomAnimation=params.randomAnimation==undefined?this.randomAnimation:(params.randomAnimation=='true')?true:false;
 			
-			this.Load(this.animsrc);
+			return this.Load(this.animsrc);
 		}
 		getCurrentFrame(){
 			if(this.loaded==false){return false;}
@@ -84,6 +84,20 @@
 			let max=names.length;
 			this.setAnimation(names[Math.floor(Math.random()*max)],stop);
 		} */
+		getWidth(){
+			const cf=this.getCurrentFrame();
+			if(cf){
+				return cf.getWidth();
+			}
+			return this.w;
+		}
+		getHeight(){
+			const cf=this.getCurrentFrame();
+			if(cf){
+				return cf.getHeight();
+			}
+			return this.h;
+		}
 		Unload(){
 			this.eventListeners={};
 			this.spritemap=null;
@@ -131,6 +145,8 @@
 				this.currentAnimation=index;
 				this.currentFrame=0;
 				this.stopAtEndOfAnimation=stop;
+				//const currentFrame=this.getCurrentFrame();
+				this.lastAnimationUpdate=performance.now();
 			}
 		}
 	}
@@ -139,8 +155,8 @@
 		if(this.loaded==false){return;}
 		let delta=time-this.lastAnimationUpdate;
 		let currentAnimation=this.animations[this.currentAnimation];
-		let currentFrame=currentAnimation.frames[this.currentFrame];
-		let frameDuration=currentFrame.duration;
+		let cf=this.getCurrentFrame();//currentAnimation.frames[this.currentFrame];
+		const frameDuration=cf.duration;
 		if(delta>frameDuration){
 			this.currentFrame++;
 			if(this.currentFrame>=currentAnimation.frames.length){

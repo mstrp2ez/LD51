@@ -41,6 +41,8 @@
 <script src="js/pathfinding.js"></script>
 <script src="js/sprite.js"></script>
 <script src="js/crate.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/conveyor.js"></script>
 <script src="js/fow.js"></script>
 <script src="js/effects.js"></script>
 <script src="js/gui.js"></script>

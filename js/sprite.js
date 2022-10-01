@@ -20,8 +20,9 @@
 		}
 		onRender(ctx){
 			if(!this.loaded){return;}
+			const wc=this.calculateWorldCoordinates();
 			
-			ctx.drawImage(this.image,this.x,this.y,this.image.width,this.image.height);
+			ctx.drawImage(this.image,wc.x,wc.y,this.image.width,this.image.height);
 			//super.onRender(ctx);
 		}
 		Serialize(obj,exempt){

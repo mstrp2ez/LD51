@@ -47,18 +47,22 @@
 		}
 		parseScene(json,parent){
 			let promises=[];
-			for(let i=0;i<json.length;i++){
-				let item=json[i];
-				let type=item.type;
-				console.log("Loading: "+type);
-				let newItem=new window[type]();
-				const ret=newItem.loadFromProperties(item);
-				if(ret!==undefined){
-					promises.push(ret);
-				}
-				parent.append(newItem,false);
-				this.parseChild(item,newItem);
+			try{
+				for(let i=0;i<json.length;i++){
+					let item=json[i];
+					let type=item.type;
+					console.log("Loading: "+type);
+					let newItem=new window[type]();
+					const ret=newItem.loadFromProperties(item);
+					if(ret!==undefined){
+						promises.push(ret);
+					}
+					parent.append(newItem,false);
+					this.parseChild(item,newItem);
 
+				}
+			}catch(e){
+				console.log(e);
 			}
 			return Promise.all(promises);
 		}
@@ -73,8 +77,9 @@
 			let ctx=cnvs.getContext();
 			cnvs.clearScreen();
 			
-			SceneManager.onUpdate(time);
+			
 			SceneManager.onRender(ctx);
+			SceneManager.onUpdate(time);
 			
 			if(this.GUI){
 				this.GUI.onUpdate(time);

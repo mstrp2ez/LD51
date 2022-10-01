@@ -44,6 +44,9 @@
 				}
 			}
 			this.children.push(child);
+			this.children.sort(function(a,b){
+				return a.layer-b.layer;
+			});
 			child.parent=this;
 		}
 		removeChild(c){
@@ -213,6 +216,18 @@
 			});
 			return ret;
 		}
+		getItemById(id){
+			if(this.id==id){
+				return this;
+			}
+			for(let i=0;i<this.children.length;i++){
+				const ret=this.children[i].getItemById(id);
+				if(ret!==null){
+					return ret;
+				}
+			}
+			return null;
+		}
 	}
 	window.SceneItem=SceneItem;
 	
@@ -241,6 +256,15 @@
 			this.mouseState={x:0,y:0,mbd:false};
 			
 			
+		}
+		onDocumentKeydown(event){
+			this.items.forEach(x => {
+				if(x.onKeydown){
+					x.onKeydown(event);
+				}
+			});
+			event.preventDefault();
+			return false;
 		}
 		onCanvasClick(event){
 			const gui=window.currentScene.getGUI();
@@ -311,11 +335,11 @@
 		}
 		onScroll(event){
 			const c=window.Camera;
-			const point=c.screenSpaceToWorldSpace({x:event.offsetX,y:event.offsetY});
+			/* const point=c.screenSpaceToWorldSpace({x:event.offsetX,y:event.offsetY});
 			c.zoomAt(point.x,point.y,event.deltaY/1000);
 			
 			event.preventDefault();
-			return false;
+			return false; */
 		}
 		zoomView(amount){
 			this.zoom-=amount;
@@ -334,6 +358,7 @@
 			canvas.addEventListener('mouseup',this.onCanvasMouseup.bind(this));
 			canvas.addEventListener('mousemove',this.onCanvasMousemove.bind(this));
 			canvas.addEventListener('click',this.onCanvasClick.bind(this));
+			document.addEventListener('keydown',this.onDocumentKeydown.bind(this));
 			
 			
 			for(let i=0;i<this.items.length;i++){
@@ -611,7 +636,13 @@
 	}
 	
 	SceneManager.prototype.getItemById=function(id){
-		return this.items.find(x => x.id==id);
+		for(let i=0;i<this.items.length;i++){
+			const ret=this.items[i].getItemById(id);
+			if(ret!==null){
+				return ret;
+			}
+		}
+		return null;
 	}
 	SceneManager.prototype.sort=function(){
 		this.items.sort(function(a,b){
