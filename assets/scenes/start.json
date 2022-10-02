@@ -1,0 +1,15 @@
+{
+	"properties":{
+		"tileSize":64
+	},
+	"gui":"assets/gui/gui0.json",
+	"items":[
+		{
+			"type":"Sprite",
+			"src":"assets/instructions.png"
+		},
+		{
+			"type":"MenuHandler"
+		}
+	]
+}

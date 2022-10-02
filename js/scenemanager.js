@@ -196,6 +196,9 @@
 			}
 			return false;
 		}
+		calculateCoordinates(){
+			return this.calculateWorldCoordinates();
+		}
 		calculateWorldCoordinates(){
 			if(this.parent!==null){
 				const p=this.parent;
@@ -608,6 +611,13 @@
 			this.lastUpdate=time;
 		}
 		this.updateMousedrag();
+		
+		const isGameOver=window.GameState.getGameOver();
+		if(isGameOver){
+			if(window.currentScene.sceneSrc!="assets/scenes/gameover.json"){
+				window.currentScene.loadScene("assets/scenes/gameover.json");
+			}
+		}
 		
 		window.Camera.onUpdate(time);
 	}

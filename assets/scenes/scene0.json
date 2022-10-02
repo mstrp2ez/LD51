@@ -7,7 +7,7 @@
 		{
 			"type":"Hero",
 			"id":"Hero",
-			"x":300,
+			"x":255,
 			"y":10,
 			"layer":1,
 			"animsrc":"assets/animations/hero.json"
@@ -19,6 +19,53 @@
 			"y":0,
 			"layer":0,
 			"src":"assets/animations/bg.png"
+		},
+		{
+			"type":"Sprite",
+			"id":"assemblystation",
+			"x":90,
+			"y":400,
+			"layer":1,
+			"src":"assets/animations/assemblystation.png"
+		},
+		{
+			"type":"Truck",
+			"id":"truck",
+			"x":290,
+			"y":400,
+			"layer":1,
+			"animsrc":"assets/animations/truckassembly.json",
+			"stopatendofanimation":true
+		},
+		{
+			"type":"Sprite",
+			"id":"tpinstr0",
+			"x":50,
+			"y":10,
+			"src":"assets/animations/teleportinstruction0.png"
+		},
+		{
+			"type":"Sprite",
+			"id":"tpinstr1",
+			"x":750,
+			"y":10,
+			"src":"assets/animations/teleportinstruction1.png"
+		},
+		{
+			"type":"ProfitScreen",
+			"id":"ecoscreen",
+			"x":750,
+			"y":450,
+			"src":"assets/animations/ecoscreen.png"
+		},
+		{
+			"type":"Director",
+			"id":"director",
+			"x":600,
+			"y":500,
+			"layer":1,
+			"animsrc":"assets/animations/director.json",
+			"randomAnimation":"true"
 		},
 		{
 			"type":"SceneItem",
@@ -58,11 +105,31 @@
 					"animsrc":"assets/animations/conveyorbelt.json"
 				},
 				{
+					"type":"Sprite",
+					"x":190,
+					"y":147,
+					"layer":2,
+					"src":"assets/animations/clockbackdrop.png",
+					"children":[{
+							"type":"Clock",
+							"id":"clock0",
+							"layer":3,
+							"x":45,
+							"y":20
+						}
+					]
+				},
+				{
 					"type":"CrateGenerator",
 					"id":"crategen0",
 					"x":60,
 					"y":97,
 					"rate":2000,
+					"cooldown":10000,
+					"count":5,
+					"cratespeed":0.5,
+					"clockid":"clock0",
+					"warningbeacontarget":"warningBeacon0",
 					"template":{
 						"endpoint":{
 							"x":385,
@@ -73,8 +140,8 @@
 						"destroytarget":"presser"
 					},
 					"heropoint":{
-						"x":300,
-						"y":200
+						"x":255,
+						"y":10
 					}
 				},
 				{
@@ -102,7 +169,7 @@
 				},
 				{
 					"type":"SpriteAnimation",
-					"id":"warningBeacon0",
+					"id":"warningBeacon1",
 					"x":304,
 					"y":40,
 					"animsrc":"assets/animations/warningbeacon.json"
@@ -136,7 +203,13 @@
 					"id":"crategen1",
 					"x":335,
 					"y":107,
-					"rate":2000,
+					"rate":3000,
+					"cooldown":10000,
+					"offset":12000,
+					"count":10,
+					"cratespeed":0.5,
+					"clockid":"clock1",
+					"warningbeacontarget":"warningBeacon1",
 					"template":{
 						"endpoint":{
 							"x":1075,
@@ -147,9 +220,24 @@
 						"destroytarget":"laser"
 					},
 					"heropoint":{
-						"x":400,
-						"y":200
+						"x":950,
+						"y":70
 					}
+				},
+				{
+					"type":"Sprite",
+					"x":470,
+					"y":155,
+					"layer":2,
+					"src":"assets/animations/clockbackdrop.png",
+					"children":[{
+							"type":"Clock",
+							"id":"clock1",
+							"layer":3,
+							"x":45,
+							"y":20
+						}
+					]
 				},
 				{
 					"type":"SpriteAnimation",
@@ -157,14 +245,21 @@
 					"y":175,
 					"animsrc":"assets/animations/pipevent.json",
 					"randomAnimation":"true"
+				},
+				{
+					"type":"SpriteAnimation",
+					"id":"laser",
+					"x":675,
+					"y":-20,
+					"animsrc":"assets/animations/laser.json"
 				}
 			]
 		},
 		{
 			"type":"Conveyor",
 			"id":"conveyor0",
-			"x":240,
-			"y":285,
+			"x":190,
+			"y":85,
 			"target":"crategen0",
 			"hitZones":{
 				"lowZone":{
@@ -173,19 +268,19 @@
 				},
 				"midZone":{
 					"s":50,
-					"e":100
+					"e":50
 				},
 				"highZone":{
 					"s":100,
-					"e":150
+					"e":50
 				}
 			}
 		},
 		{
 			"type":"Conveyor",
 			"id":"conveyor1",
-			"x":340,
-			"y":485,
+			"x":840,
+			"y":150,
 			"target":"crategen1",
 			"hitZones":{
 				"lowZone":{
@@ -194,13 +289,17 @@
 				},
 				"midZone":{
 					"s":50,
-					"e":100
+					"e":50
 				},
 				"highZone":{
 					"s":100,
-					"e":150
+					"e":50
 				}
 			}
+		},
+		{
+			"type":"OverheadManager",
+			"id":"OHManager"
 		}
 	]
 }

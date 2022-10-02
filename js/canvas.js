@@ -9,7 +9,7 @@
 			this.context=null;
 			this.backbuffer=null;
 			this.bbcontext=null;
-			this.bgcolor='#fff';
+			this.bgcolor='#000';
 		}
 		setBgColor(color){
 			this.bgcolor=color;

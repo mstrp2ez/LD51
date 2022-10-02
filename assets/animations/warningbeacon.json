@@ -1,8 +1,32 @@
 {
 	"spritesrc":"assets/animations/warningbeacon.png",
-	"animations":[
-		{
+	"animations":[{
 			"name":"allclear",
+			"frames":[{
+					"duration":200,
+					"x":0,
+					"y":104,
+					"w":20,
+					"h":104
+				},
+				{
+					"duration":200,
+					"x":20,
+					"y":104,
+					"w":20,
+					"h":104
+				},
+				{
+					"duration":200,
+					"x":40,
+					"y":104,
+					"w":20,
+					"h":104
+				}
+			]
+		},
+		{
+			"name":"warning",
 			"frames":[{
 					"duration":200,
 					"x":0,
@@ -23,39 +47,6 @@
 					"y":0,
 					"w":20,
 					"h":104
-				}
-			]
-		},
-		{
-			"name":"badquality",
-			"frames":[{
-					"duration":10000,
-					"x":32,
-					"y":0,
-					"w":32,
-					"h":32
-				}
-			]
-		},
-		{
-			"name":"midquality",
-			"frames":[{
-					"duration":10000,
-					"x":64,
-					"y":0,
-					"w":32,
-					"h":32
-				}
-			]
-		},
-		{
-			"name":"goodquality",
-			"frames":[{
-					"duration":10000,
-					"x":96,
-					"y":0,
-					"w":32,
-					"h":32
 				}
 			]
 		}

@@ -19,11 +19,12 @@
 			this.load(params).then(()=>{this.loaded=true});
 		}
 		onRender(ctx){
+			
 			if(!this.loaded){return;}
 			const wc=this.calculateWorldCoordinates();
 			
 			ctx.drawImage(this.image,wc.x,wc.y,this.image.width,this.image.height);
-			//super.onRender(ctx);
+			super.onRender(ctx);
 		}
 		Serialize(obj,exempt){
 			if(exempt.indexOf(this.id)!=-1){return null;}

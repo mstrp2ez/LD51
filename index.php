@@ -23,29 +23,30 @@
 <header>
 </header>
 <body>
-<h1>Tower Defence Survivor</h1>
-
+<img src="assets/caption.png" alt>
 <button onClick="onFullscreen()">Fullscreen</button>
 <div class="content"></div>
 
-<script src="js/pattern.js"></script>
 
 <script src="js/utils.js"></script>
-
 <script src="js/canvas.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/scenemanager.js"></script>
 <script src="js/animation.js"></script>
-<script src="js/rendersnapshot.js"></script>
 <script src="js/tilemap.js"></script>
-<script src="js/pathfinding.js"></script>
 <script src="js/sprite.js"></script>
+<script src="js/profitscreen.js"></script>
+<script src="js/gamestate.js"></script>
+<script src="js/truck.js"></script>
 <script src="js/crate.js"></script>
 <script src="js/hero.js"></script>
+<script src="js/overhead.js"></script>
+<script src="js/mainmenu.js"></script>
 <script src="js/conveyor.js"></script>
-<script src="js/fow.js"></script>
+<script src="js/clock.js"></script>
 <script src="js/effects.js"></script>
 <script src="js/gui.js"></script>
+
 <script src="js/scene.js"></script>
 
 

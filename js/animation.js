@@ -1,6 +1,28 @@
 "use strict";
 
 (function(){
+	
+	class AnimationCache{
+		constructor(){
+			this.cache={
+				
+			};
+		}
+		GetAnimation(animsrc){
+			if(this.cache.hasOwnProperty(animsrc)){
+				return new Promise((resolve) => resolve(this.cache[animsrc]));
+			}
+			return fetch(animsrc).then(data => data.json()).then(data => {
+				const spritemap=new window.Sprite();
+				return spritemap.load({'src':data.spritesrc}).then(()=>{
+					this.cache[animsrc]={data:data,img:spritemap};
+					return this.cache[animsrc];
+				});
+			});
+		}
+	}
+	const AnimCache=new AnimationCache();
+	
 	const DEFAULT_FRAME_DURATION=33;
 	class AnimationFrame{
 		constructor(params){
@@ -62,6 +84,7 @@
 			super.loadFromProperties(params);
 			this.animsrc=params.animsrc;
 			this.randomAnimation=params.randomAnimation==undefined?this.randomAnimation:(params.randomAnimation=='true')?true:false;
+			this.stopAtEndOfAnimation=params.stopatendofanimation??=this.stopAtEndOfAnimation;
 			
 			return this.Load(this.animsrc);
 		}
@@ -117,7 +140,23 @@
 	
 	
 	SpriteAnimation.prototype.Load=function(p_Src){
-		return fetch(p_Src).then(data => data.json()).then(data => {
+		return AnimCache.GetAnimation(p_Src).then(data => {
+			this.animationData=data.data;
+			this.currentFrame=0;
+			this.currentAnimation=0;
+			
+			this.loaded=true;
+			this.fireEvent("animation_loaded");
+			this.spritemap=data.img;
+				
+			let animations=this.animationData.animations;
+			for(var j=0;j<animations.length;j++){
+				this.animations.push(new Animation(animations[j]));
+			}
+		});
+		
+		
+		/* return fetch(p_Src).then(data => data.json()).then(data => {
 			this.animationData=data;
 			this.currentFrame=0;
 			this.currentAnimation=0;
@@ -132,7 +171,7 @@
 					this.animations.push(new Animation(animations[j]));
 				}
 			});
-		});
+		}); */
 	}
 	
 	SpriteAnimation.prototype.setAnimation=function(name,stop){
@@ -162,6 +201,7 @@
 			if(this.currentFrame>=currentAnimation.frames.length){
 				this.fireEvent("end_of_animation");
 				this.currentFrame=this.stopAtEndOfAnimation?this.currentFrame-1:0;
+				if(this.currentFrame<0){this.currentFrame=0;}
 				if(this.randomAnimation){
 					this.setRandomAnimation();
 				}
@@ -196,6 +236,9 @@
 		let frames=currentAnimation.frames;
 		
 		let f=frames[this.currentFrame];
+		if(f==undefined){
+			console.log("no frames");
+		}
 		ctx.drawImage(img,f.sx,f.sy,f.sw,f.sh,wc.x,wc.y,f.sw,f.sh);
 		
 		if(this.isSelected()){

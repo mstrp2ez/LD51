@@ -7,7 +7,7 @@
 			window.renderAllLayers=false;
 			var scene=new window.Scene(window.canvas);
 			
-			let sceneSrc='assets/scenes/scene0.json';
+			let sceneSrc='assets/scenes/start.json';
 			
 			scene.loadScene(sceneSrc);
 		}

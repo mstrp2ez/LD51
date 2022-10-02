@@ -995,7 +995,7 @@
 	class DialogWidget extends TextWidget{
 		constructor(params,parent){
 			super(params,parent);
-			this.textIndex=0;
+			
 			this.scrollSpeed=params.scrollspeed===undefined?2000:params.scrollspeed;
 			this.lastUpdate=0;
 			this.fullPartIndex=0;
@@ -1007,10 +1007,10 @@
 			
 			this.calculateTextParts();
 			
-			$(document).on(`keydown.guikeydowndialog`,this.onKeydown.bind(this));
+			//$(document).on(`keydown.guikeydowndialog`,this.onKeydown.bind(this));
 		}
 		Unload(){
-			$(document).off(`keydown.guikeydowndialog`,this.onKeydown.bind(this));
+			//$(document).off(`keydown.guikeydowndialog`,this.onKeydown.bind(this));
 		}
 		onKeydown(event){
 			if(event.which==DIALOG_SKIP_KEY){
@@ -1027,6 +1027,11 @@
 			}
 			return true;
 		}
+		reset(){
+			this.done=false;
+			this.fullPartIndex=0;
+			this.textIndex=0;
+		}
 		isDone(){
 			return this.done;
 		}
@@ -1039,6 +1044,7 @@
 			let lineStr="";
 			let rowLen=0;
 			let rowLenMax=0;
+			this.textParts=[];
 			ctx.save();
 				ctx.fillStyle=this.color;
 				ctx.textBaseline='top';
@@ -1063,6 +1069,7 @@
 			this.w=rowLenMax+(DIALOG_PADDING*2);
 		}
 		onRender(ctx){
+			if(!this.visible){return;}
 			let wc=this.calculateCoordinates();
 			
 			ctx.save();
@@ -1090,6 +1097,7 @@
 		}
 		
 		onUpdate(time){
+			if(!this.visible){return;}
 			let delta=time-this.lastUpdate;
 			if(!this.done&&delta>this.scrollSpeed){
 				this.textIndex++;
@@ -1245,7 +1253,7 @@
 	
 	GUI.prototype.Unload=function(){
 		this.root.Unload();
-		$(document).off(`keydown.guikeydown`);
+		//$(document).off(`keydown.guikeydown`);
 	}
 	
 	window.GUI=GUI;

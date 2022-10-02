@@ -1,0 +1,26 @@
+{
+	"spritesrc":"assets/animations/lasers.png",
+	"animations":[{
+			"name":"idle",
+			"frames":[{
+					"duration":200,
+					"x":108,
+					"y":0,
+					"w":108,
+					"h":135
+				}
+			]
+		},
+		{
+			"name":"destroy",
+			"frames":[{
+					"duration":200,
+					"x":0,
+					"y":0,
+					"w":108,
+					"h":135
+				}
+			]
+		}
+	]
+}

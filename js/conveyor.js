@@ -40,8 +40,8 @@
 					colorIdx++;
 					const zone=this.hitZones[obj];
 					const x=wc.x+zone.s;
-					const y=wc.y-20;
-					const w=zone.e-zone.s;
+					const y=wc.y;
+					const w=zone.e;
 					ctx.fillRect(x,y,w,60);
 				}
 			ctx.restore();
@@ -51,7 +51,6 @@
 			
 			const crates=this.crateGenerator.getCrates();
 			crates.forEach(crate => {
-				console.log(crate.getKey()+' : '+key);
 				if(crate.getKey()!=key){return;}
 				
 				if(this.isInZone(crate,this.hitZones.highZone)){
