@@ -56,7 +56,7 @@
 			super(params);
 			this.salaryDisplayDuration=2000;
 			this.lastUpdate=performance.now();
-			this.salary=rand(5000,9000);
+			this.salary=rand(3000,5000);
 			this.showSalary=false;
 			
 			setInterval(this.giveSalary.bind(this),30000);
@@ -107,7 +107,7 @@
 				"innovation officer"
 			];
 			
-			this.intervalHandle=setInterval(this.checkForProfit.bind(this),10000);
+			this.intervalHandle=setInterval(this.checkForProfit.bind(this),30000);
 		}
 		Unload(){
 			super.Unload();
@@ -125,7 +125,7 @@
 			const profit=gs.getProfit();
 			if(profit>0){
 				this.hireMoreOverhead();
-			}else if(profit<0&&profit>-10000){
+			}else if(profit<0&&profit>-1000000){
 				this.increaseProduction();
 			}else{
 				window.GameState.setGameOver(true);

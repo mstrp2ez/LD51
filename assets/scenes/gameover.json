@@ -4,5 +4,9 @@
 	},
 	"gui":"assets/gui/gui0.json",
 	"items":[
+		{
+			"type":"Sprite",
+			"src":"assets/gameover.png"
+		}
 	]
 }

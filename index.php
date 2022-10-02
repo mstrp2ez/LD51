@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Apparaten - Hero Brawler</title>
-  <meta name="description" content="ReactTest">
+  <title>Apparaten - LD51</title>
+  <meta name="description" content="LD51">
   <meta name="author" content="Mstrp">
 
-  <meta property="og:title" content="ReactTest">
+  <meta property="og:title" content="LD51">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.apparatengames.com">
-  <meta property="og:description" content="ReactTest">
+  <meta property="og:description" content="LD51">
   <meta property="og:image" content="https://apparatengames.com">
 
   <link rel="icon" href="favicon.png?v=2">
